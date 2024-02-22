@@ -135,12 +135,13 @@ function admin_bar_links_247($admin_bar) {
 add_action('admin_enqueue_scripts', 'sticky_publish_247');
 function sticky_publish_247() {
   echo '<style>
-    	div#submitdiv{
-			position: sticky;
-    		top: 0;
-    		z-index: 1;
-    	}	
-  		</style>';
+        #publishing-action {
+            position: fixed;
+            right: 0;
+            top: 150px;
+            z-index:100;
+        }   
+        </style>';
 }
 
 add_action('wp_head', function () {
