@@ -9,7 +9,7 @@ Well just couple of hooks to make life easier as a developer.
 
 There are certain area where wordpress might consider improving in future like 
 
-1- While you are logged in backend and looking at frontend you are able to go directly to [Dashboard,Themes,Widgets & Menus](https://imgur.com/fGrMLfq) but what about Media, Plugins, Pages
+1- While you are logged in backend and looking at frontend you are able to go directly to [Dashboard,Themes,Widgets & Menus](https://imgur.com/fGrMLfq) but what about Media, Plugins, Pages.
 
 2- There should be an way to turn off default Block Editor by default
 
@@ -158,7 +158,6 @@ function defer_parsing_of_js ( $url ) {
 add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 }
 ```
-
 Removing query string from browser resource urls 
 
 ```
@@ -214,7 +213,6 @@ add_action('init', function () {
     }
 });
 ```
-
 Showing featured image in All posts Grid 
 
 ```
@@ -236,8 +234,8 @@ function posts_featuredimage_column_data($column_name, $post_ID){
 }
 
 ```
-
 Helper function to show SVG paths for static resources for animation purpose 
+
 ```
 function get_svg_inline($path, $style = '') {
    if ( stripos( $path, '://' ) !== FALSE ) {
@@ -260,4 +258,20 @@ function get_svg_inline($path, $style = '') {
 and you can use this code as 
 ```
  <?php svg_inline( get_template_directory_uri() . '/app/images/loader.svg' )?>   
+```
+
+An small tweak to make the update button (sticky)[https://imgur.com/lpfMuI4]  for long posts so you dont need to scroll up to hit update to save changes 
+
+```
+add_action('admin_enqueue_scripts', 'sticky_publish_247');
+function sticky_publish_247() {
+  echo '<style>
+        #publishing-action {
+            position: fixed;
+            right: 0;
+            top: 150px;
+            z-index:100;
+        }   
+        </style>';
+}
 ```
