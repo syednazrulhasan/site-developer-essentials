@@ -277,13 +277,6 @@ function sticky_publish_247() {
 ```
 
 Wordpress doesnt allows for SVG files upload in media library for that you can apply a simple tweak to your functions.php of active theme.
-
-Make sure to add following lines to your `wp-config.php` 
-
-```
-define( 'ALLOW_UNFILTERED_UPLOADS', true );
-```
-
 ```
 function upload_svg_files_247( $allowed ) {
     if ( !current_user_can( 'manage_options' ) )
@@ -293,3 +286,10 @@ function upload_svg_files_247( $allowed ) {
 }
 add_filter( 'upload_mimes', 'upload_svg_files_247');
 ```
+
+Also make sure to add following lines to your `wp-config.php`  when you add above svg upload code to `functions.php`
+
+```
+define( 'ALLOW_UNFILTERED_UPLOADS', true );
+```
+
