@@ -260,7 +260,7 @@ and you can use this code as
  <?php svg_inline( get_template_directory_uri() . '/app/images/loader.svg' )?>   
 ```
 
-An small tweak to make the update button (sticky)[https://imgur.com/lpfMuI4]  for long posts so you dont need to scroll up to hit update to save changes 
+An small tweak to make the update button [sticky](https://imgur.com/lpfMuI4)  for long posts so you dont need to scroll up to hit update to save changes 
 
 ```
 add_action('admin_enqueue_scripts', 'sticky_publish_247');
@@ -274,4 +274,22 @@ function sticky_publish_247() {
         }   
         </style>';
 }
+```
+
+Wordpress doesnt allows for SVG files upload in media library for that you can apply a simple tweak to your functions.php of active theme.
+
+Make sure to add following lines to your `wp-config.php` 
+
+```
+define( 'ALLOW_UNFILTERED_UPLOADS', true );
+```
+
+```
+function upload_svg_files_247( $allowed ) {
+    if ( !current_user_can( 'manage_options' ) )
+        return $allowed;
+    $allowed['svg'] = 'image/svg+xml';
+    return $allowed;
+}
+add_filter( 'upload_mimes', 'upload_svg_files_247');
 ```
